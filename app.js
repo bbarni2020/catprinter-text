@@ -1,3 +1,5 @@
+import * as pdfjsLib from './vendor/pdf.min.mjs';
+
 const textInput = document.getElementById('textInput');
 const fileInput = document.getElementById('fileInput');
 const statusLabel = document.getElementById('status');
@@ -17,10 +19,7 @@ const styleInputs = {
   uppercase: document.getElementById('uppercase')
 };
 
-const pdfjsLib = globalThis.pdfjsLib;
-if (pdfjsLib) {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.worker.min.mjs';
-}
+pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.mjs';
 
 function setStatus(message, isError = false) {
   statusLabel.textContent = message;
@@ -74,10 +73,6 @@ function renderPreview() {
 }
 
 async function extractTextFromPdf(file) {
-  if (!pdfjsLib) {
-    throw new Error('PDF parser is unavailable in this browser.');
-  }
-
   const buffer = await file.arrayBuffer();
   const doc = await pdfjsLib.getDocument({ data: buffer }).promise;
   const pages = [];

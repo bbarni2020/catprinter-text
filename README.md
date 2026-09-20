@@ -22,4 +22,4 @@ A minimal text-focused web app inspired by [dropalltables/catprinter](https://gi
 
 Open `/home/runner/work/catprinter-text/catprinter-text/index.html` in a browser.
 
-> Note: PDF and DOCX extraction depend on browser-loaded libraries (PDF.js and Mammoth).
+> Note: PDF.js and Mammoth are vendored locally in `/vendor` for safer offline-compatible loading.
