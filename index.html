@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>catprinter-text</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.js"></script>
+  <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>catprinter-text</h1>
+    <p>Text-focused web app inspired by catprinter with import + styling + print.</p>
+  </header>
+
+  <main class="layout">
+    <section class="controls">
+      <h2>Source</h2>
+      <textarea id="textInput" rows="10" placeholder="Type or paste text to print..."></textarea>
+
+      <label class="field-label" for="fileInput">Import file (.txt, .pdf, .docx)</label>
+      <input id="fileInput" type="file" accept=".txt,.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" />
+      <p id="status" class="status">Ready.</p>
+
+      <h2>Styling</h2>
+      <div class="grid">
+        <label>Font
+          <select id="fontFamily">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="'Courier New', monospace">Courier New</option>
+            <option value="'Times New Roman', serif">Times New Roman</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+          </select>
+        </label>
+
+        <label>Font size (px)
+          <input id="fontSize" type="number" min="8" max="48" value="16" />
+        </label>
+
+        <label>Line height
+          <input id="lineHeight" type="number" min="1" max="3" step="0.1" value="1.4" />
+        </label>
+
+        <label>Letter spacing (px)
+          <input id="letterSpacing" type="number" min="0" max="12" step="0.2" value="0" />
+        </label>
+
+        <label>Alignment
+          <select id="textAlign">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+            <option value="justify">Justify</option>
+          </select>
+        </label>
+
+        <label>List style
+          <select id="listStyle">
+            <option value="none">Plain text</option>
+            <option value="ul">Bulleted list</option>
+            <option value="ol">Numbered list</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="toggles">
+        <label><input id="bold" type="checkbox" /> Bold</label>
+        <label><input id="italic" type="checkbox" /> Italic</label>
+        <label><input id="underline" type="checkbox" /> Underline</label>
+        <label><input id="uppercase" type="checkbox" /> Uppercase</label>
+      </div>
+
+      <div class="actions">
+        <button id="printButton" type="button">Print text</button>
+      </div>
+    </section>
+
+    <section class="preview-wrap">
+      <h2>Preview</h2>
+      <article id="preview" class="preview"></article>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
